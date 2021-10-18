@@ -1,0 +1,31 @@
+// We have to crop the content because of the image margin
+// 795    720
+// --- = -----
+// 100     x
+
+// (720 * 100) / 795 = content
+
+$content: 90.56603773584905%;
+
+#GameController {
+    height: calc(100% - (60 * 2px + 40px));
+    margin-top: 21px;
+    margin-bottom: 21px;
+
+    position: relative;
+
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    canvas {
+        z-index: 10;
+        position: absolute;
+        top: 3%;
+        left: 2.8%;
+        width: 94.2%;
+        height: 94.2%;
+    }
+}

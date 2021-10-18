@@ -1,7 +1,7 @@
 // Import Own Components
-import Menu     from "Components/Menu";
-import Player   from "Components/Player";
-import boardImg from "Resources/img/board.png";
+import Menu           from "Components/Menu";
+import Player         from "Components/Player";
+import GameController from "Components/GameController";
 import "./GamePage.scss";
 
 const GamePage = () => {
@@ -15,9 +15,7 @@ const GamePage = () => {
 					elo={1600}
 				/>
 
-				<div className="boardContainer">
-					<img src={boardImg} alt="board" />
-				</div>
+				<GameController />
 
 				<Player
 					name="martline1"
