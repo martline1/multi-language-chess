@@ -1,9 +1,6 @@
-import board from "Resources/board.png";
+// Import Own Components
+import Pages from "./Pages";
 
-const App = () => (
-	<div className="a">
-		<img src={board} alt="board" />
-	</div>
-);
+const App = () => <Pages />;
 
 export default App;

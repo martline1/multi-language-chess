@@ -36,6 +36,19 @@ module.exports = (env, argv) => {
                     ],
                 },
                 {
+                    test    : /\.s[ac]ss$/,
+                    include : path.resolve(__dirname, "src"),
+                    exclude : /node_modules/,
+                    use     : [
+                        // Creates `style` nodes from JS strings
+                        "style-loader",
+                        // Translates CSS into CommonJS
+                        "css-loader",
+                        // Compiles Sass to CSS
+                        "sass-loader",
+                    ],
+                },
+                {
                     test    : /\.css$/,
                     include : path.resolve(__dirname, "src"),
                     exclude : /node_modules/,
@@ -50,7 +63,7 @@ module.exports = (env, argv) => {
                     ],
                 },
                 {
-                    test    : /\.(png|jpe?g|gif)$/,
+                    test    : /\.(png|jpe?g|gif|ttf)$/,
                     include : path.resolve(__dirname, "src"),
                     exclude : /node_modules/,
                     use     : [
