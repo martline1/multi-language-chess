@@ -1,1 +1,5 @@
+# NPM Packages
 node_modules/
+
+# Dist folder
+dist/

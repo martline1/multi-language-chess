@@ -1,5 +1,9 @@
+import board from "Resources/board.png";
+
 const App = () => (
-	<h1>Hello world from electron react!</h1>
+	<div className="a">
+		<img src={board} alt="board" />
+	</div>
 );
 
 export default App;

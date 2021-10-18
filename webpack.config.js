@@ -1,7 +1,6 @@
 const path                 = require("path");
 const webpack              = require("webpack");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const autoprefixer         = require("autoprefixer");
 const ESLintPlugin         = require("eslint-webpack-plugin");
 const HtmlWebpackPlugin    = require("html-webpack-plugin");
 
@@ -10,12 +9,15 @@ module.exports = (env, argv) => {
 
     return {
         mode,
-        target : "electron-renderer",
+        target  : "electron-renderer",
+        resolve : {
+            modules : [path.resolve(__dirname, "src"), "node_modules"],
+        },
         entry  : {
             app : path.resolve(__dirname, "src", "index.js"),
         },
         output : {
-            path     : path.resolve(__dirname, "public"),
+            path     : path.resolve(__dirname, "dist"),
             filename : "[name].js",
         },
         module : {
@@ -47,6 +49,16 @@ module.exports = (env, argv) => {
                         },
                     ],
                 },
+                {
+                    test    : /\.(png|jpe?g|gif)$/,
+                    include : path.resolve(__dirname, "src"),
+                    exclude : /node_modules/,
+                    use     : [
+                        {
+                            loader : "file-loader",
+                        },
+                    ],
+                },
             ],
         },
         plugins : [
@@ -56,7 +68,6 @@ module.exports = (env, argv) => {
             new webpack.ProvidePlugin({
                 React : "react",
             }),
-            autoprefixer,
             new ESLintPlugin({
                 fix        : true,
                 extensions : ["js", "jsx"],
