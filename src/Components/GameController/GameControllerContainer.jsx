@@ -1,39 +1,43 @@
+/* eslint-disable */
 import { useEffect } from "react";
-import * as PIXI     from "pixi.js";
+// eslint-disable-next-line
+import { PIXI } from "Resources/pixi.min";
 
 // Import Own Components
 // import { setup, update } from "./Game";
+import { debounce }   from "Helpers";
 import GameController from "./GameController.jsx";
 
 const GameControllerContainer = () => {
 	useEffect(() => {
-		const app = new PIXI.Application();
+		const canvasContainer = document.getElementById("canvas_container");
+		const dimensions      = canvasContainer.getBoundingClientRect();
 
-		const gameController = document.getElementById("GameController");
+		const app = new PIXI.Application({
+			width           : dimensions.width,
+			height          : dimensions.height,
+			backgroundColor : 0x000000,
+			resolution      : window.devicePixelRatio,
+			autoDensity     : true,
+		});
 
-		gameController.appendChild(app.view);
+		const onResizeFunc = () => {
+			const _canvasContainer = document.getElementById("canvas_container");
+			const _dimensions      = _canvasContainer.getBoundingClientRect();
 
-		// const gameCanvas  = document.getElementById("game_canvas");
-		// gameCanvas.width  = gameCanvas.clientWidth;
-		// gameCanvas.height = gameCanvas.clientHeight;
+			app.renderer.resize(_dimensions.width, _dimensions.height);
+		};
+		onResizeFunc();
 
-		// const ctx = gameCanvas.getContext("2d");
+		const onResize = debounce(onResizeFunc, 10);
 
-		// setup(ctx, gameCanvas);
+		canvasContainer.appendChild(app.view);
 
-		// let gameLoopId;
+		window.addEventListener("resize", onResize);
 
-		// const GameLoop = () => {
-		// 	update();
-
-		// 	gameLoopId = requestAnimationFrame(GameLoop);
-		// };
-
-		// GameLoop();
-
-		// return () => {
-		// 	cancelAnimationFrame(gameLoopId);
-		// };
+		return () => {
+			window.removeEventListener("resize", onResize);
+		};
 	}, []);
 
 	return (
@@ -42,4 +46,3 @@ const GameControllerContainer = () => {
 };
 
 export default GameControllerContainer;
-

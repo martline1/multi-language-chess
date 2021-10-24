@@ -9,7 +9,7 @@ const GameController = () => (
 			alt="board"
 		/>
 
-		{/* <canvas id="game_canvas" /> */}
+		<div id="canvas_container" />
 	</div>
 );
 
