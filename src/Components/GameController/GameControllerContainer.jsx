@@ -1,12 +1,11 @@
-/* eslint-disable */
 import { useEffect } from "react";
 // eslint-disable-next-line
 import { PIXI } from "Resources/pixi.min";
 
 // Import Own Components
-// import { setup, update } from "./Game";
-import { debounce }   from "Helpers";
-import GameController from "./GameController.jsx";
+import { debounce }      from "Helpers";
+import { setup, update } from "./Game";
+import GameController    from "./GameController.jsx";
 
 const GameControllerContainer = () => {
 	useEffect(() => {
@@ -19,6 +18,7 @@ const GameControllerContainer = () => {
 			backgroundColor : 0x000000,
 			resolution      : window.devicePixelRatio,
 			autoDensity     : true,
+			antialias       : true,
 		});
 
 		const onResizeFunc = () => {
@@ -35,7 +35,12 @@ const GameControllerContainer = () => {
 
 		window.addEventListener("resize", onResize);
 
+		setup(app);
+
+		app.ticker.add(update);
+
 		return () => {
+			app.ticker.remove(update);
 			window.removeEventListener("resize", onResize);
 		};
 	}, []);

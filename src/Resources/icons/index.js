@@ -1,5 +1,1 @@
-import Brain from "./Brain.jsx";
-
-export {
-	Brain,
-};
+export { default as Brain } from "./Brain.jsx";

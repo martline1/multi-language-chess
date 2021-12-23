@@ -11,7 +11,7 @@ module.exports = {
 	parserOptions : {
 		ecmaVersion       : 9,
 		sourceType        : "module",
-        requireConfigFile : false,
+		requireConfigFile : false,
 		ecmaFeatures      : {
 			jsx     : true,
 			modules : true,
@@ -50,7 +50,7 @@ module.exports = {
 			"always",
 		],
 		"no-unused-vars" : [
-			"error",
+			"warn",
 			{
 				args : "none",
 			},
